@@ -13,22 +13,13 @@
   <link rel="stylesheet" href="<?php echo DIRCSS.'Style.css'; ?>">
 </head>
 <body class="container-fluid">
+
   <header class="row">
-    <!-- <ul class="nav justify-content-center bg-dark text-white col-12">
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo DIRPAGE; ?>">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo DIRPAGE.'entrar'; ?>">Entrar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo DIRPAGE.'cadastro'; ?>">Cadastre-se</a>
-      </li>
-    </ul> -->
+
   </header>
 
   <main class="row">
-    <h2 class="col-12 text-center">Bem-vindo</h2>
+
   </main>
 
   <footer class="Footer">
