@@ -8,7 +8,10 @@
     ],
     "require": {},
     "autoload": {
-    	"App\\":"../app/",
-    	"Src\\":"../src/"
+        "psr-4":{
+            "App\\":"../app/",
+            "Src\\":"../src/"
+
+        }
     }
 }
