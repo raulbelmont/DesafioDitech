@@ -1,0 +1,14 @@
+{
+    "name": "desafio/ditech",
+    "authors": [
+        {
+            "name": "Raul Belmonte",
+            "email": "raulbelomont@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+    	"App\\":"../app/",
+    	"Src\\":"../src/"
+    }
+}
