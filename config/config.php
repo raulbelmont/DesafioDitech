@@ -12,7 +12,7 @@ if (substr($_SERVER['DOCUMENT_ROOT'],-1) == '/') {
 #Diretórios específicos
 define("DIRIMG", DIRPAGE."public/img/");
 define("DIRCSS", DIRPAGE."public/css/");
-define("DRIADMIN", DIRPAGE."public/admin/");
+define("DIRADMIN", DIRPAGE."public/admin/");
 define("DIRAUDIO", DIRPAGE."public/audio/");
 define("DIRDESIGN", DIRPAGE."public/design/");
 define("DIRFONTS", DIRPAGE."public/fonts/");
