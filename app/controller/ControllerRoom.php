@@ -50,11 +50,44 @@ class ControllerRoom extends ClassRender implements InterfaceView
 			#cadastrando sala
 			}elseif ($room->insert()) {
 				echo "<script type='text/javascript'>alert('Sala cadastrada com sucesso!')</script>";
+				header("Refresh: 0; url=".DIRPAGE."salas");
 			}else{
 				echo "<script type='text/javascript'>alert('Erro ao cadastrar sala')</script>";
 			}
 		}else{
 			echo "<script type='text/javascript'>alert('Informe o número da sala')</script>";
+		}
+	}
+
+	#funcao para exibir salas já cadastradas
+	public function selectRooms()
+	{
+		$room = new ClassRoom();
+		echo "
+		  <table class='table col-10'>
+		  <thead class='thead-dark'>
+		    <tr class='font-weight-bold'>
+		      <th>Sala</th>
+		      <th>Número</th>
+		      <th>Ações</th>
+		    </tr>
+		  </thead>
+		  <tbody>";
+		foreach ($room->selectAll() as $key => $value){
+			echo  "<tr> <td>Sala de Reuniões</td> <td>Sala Nº ". $value->roomNumber."</td>
+			 <td><a href='".DIRPAGE."salas/deleteRoom/".$value->id."'>Excluir</a></td></tr>";
+		}
+		echo "</tbody></table>";
+	}
+
+	#funcao para deletar salas
+	public function deleteRoom($id){
+		$room = new ClassRoom();
+		if ($room->delete($id)) {
+			echo "<script type='text/javascript'>alert('Excluida com sucesso!')</script>";
+			header("Refresh: 0; url=".DIRPAGE."salas");
+		}else{
+			echo "<script type='text/javascript'>alert('Erro ao excluir! Tente novamente.')</script>";
 		}
 	}
 

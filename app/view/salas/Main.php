@@ -16,4 +16,6 @@
 	</div>
 
   </form>
+
+  <?php $this->selectRooms(); ?>
 </div>

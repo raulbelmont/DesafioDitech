@@ -17,7 +17,7 @@ abstract class ClassCRUD extends ClassConnection
     {
         $sql = "SELECT * FROM $this->table WHERE id = :id";
         $stmt = ClassConnection::prepare($sql);
-        $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+        $stmt->bindParam(':id',$id,\PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
     }
@@ -36,7 +36,7 @@ abstract class ClassCRUD extends ClassConnection
     {
         $sql = "DELETE FROM $this->table WHERE id =:id";
         $stmt = ClassConnection::prepare($sql);
-        $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+        $stmt->bindParam(':id',$id,\PDO::PARAM_INT);
         return $stmt->execute();
     }
 

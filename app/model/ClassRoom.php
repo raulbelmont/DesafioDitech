@@ -29,7 +29,7 @@ class ClassRoom extends ClassCRUD
     {
         $sql = "SELECT * FROM $this->table WHERE roomNumber = :roomNumber";
         $stmt = ClassConnection::prepare($sql);
-        $stmt->bindParam(":roomNumber", $roomNumber, \PDO::PARAM_INT);
+        $stmt->bindParam(":roomNumber", $this->roomNumber, \PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
     }
