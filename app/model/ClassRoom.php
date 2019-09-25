@@ -5,11 +5,12 @@ use App\model\ClassCRUD;
 
 class User extends ClassCRUD
 {
-
+    #atributos da classe
 	private $id;
 	private $roomNumber;
 	protected $table = 'room';
 
+    #inserindo nova sala
 	public function insert()
 	{
 		$sql = "INSERT INTO $this->table (roomNumber) VALUES (:roomNumber)";
@@ -23,6 +24,17 @@ class User extends ClassCRUD
 
 	}
 
+    #verifica se a sala que irá ser cadastrada já existe
+    public function roomExists($roomNumber);
+    {
+        $sql = "SELECT * FROM $this->table WHERE roomNumber = :roomNumber";
+        $stmt = Conecta::prepare($sql);
+        $stmt->bindParam(":roomNumber", $roomNumber, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    #getters and setters
     public function getId()
     {
         return $this->id;
