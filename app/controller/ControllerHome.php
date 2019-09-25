@@ -58,6 +58,8 @@ class ControllerHome extends ClassRender implements InterfaceView
 		}
 	}
 
+	}
+
 	#getters and setters
 
     public function getName()
