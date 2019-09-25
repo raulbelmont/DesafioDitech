@@ -5,9 +5,12 @@ session_start();
 
 use Src\classes\ClassRender;
 use Src\interfaces\InterfaceView;
+use App\model\ClassReservation;
 
 class ControllerDashboard extends ClassRender implements InterfaceView
 {
+	#atributos
+	private $day;
 
 	public function __construct()
 	{
@@ -23,4 +26,22 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 
 	}
 
+	public function getParameter()
+	{
+		if (isset($_POST['day'])) {
+			$this->setDay($_POST['day']);
+		}
+	}
+
+    public function getDay()
+    {
+        return $this->day;
+    }
+
+    public function setDay($day)
+    {
+        $this->day = $day;
+
+        return $this;
+    }
 }
