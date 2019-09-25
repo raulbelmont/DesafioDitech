@@ -8,7 +8,7 @@ class User extends ClassCRUD
 
 	private $id;
 	private $roomNumber;
-	protected $table = 'user';
+	protected $table = 'room';
 
 	public function insert()
 	{
