@@ -15,9 +15,9 @@ class ClassUser extends ClassCRUD
 	public function insert()
 	{
 		$sql = "INSERT INTO $this->table (name, password) VALUES (:name, :password)";
-		$stmt = Conecta::prepare($sql);
-		$stmt->bindParam(':name', $this->name, PDO::PARAM_STR);
-		$stmt->bindParam(':password', $this->password, PDO::PARAM_STR);
+		$stmt = ClassConnection::prepare($sql);
+		$stmt->bindParam(':name', $this->name, \PDO::PARAM_STR);
+		$stmt->bindParam(':password', $this->password, \PDO::PARAM_STR);
 		return $stmt->execute();
 	}
 
@@ -42,12 +42,12 @@ class ClassUser extends ClassCRUD
     }
 
     #verificando se o usuário existe no banco de dados
-    public function userExists($name, $password)
+    public function userExists()
     {
         $sql = "SELECT * FROM $this->table WHERE name = :name AND password = :password";
-        $stmt = Conecta::prepare($sql);
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt = ClassConnection::prepare($sql);
+        $stmt->bindParam(':name', $this->name, \PDO::PARAM_STR);
+        $stmt->bindParam(':password', $this->password, \PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetch();
     }
