@@ -5,7 +5,7 @@ use App\model\ClassCRUD;
 
 class ClassReservation extends ClassCRUD
 {
-
+    #atributos da classe
 	private $id;
 	private $day;
 	private $hour;
@@ -13,6 +13,7 @@ class ClassReservation extends ClassCRUD
     private $userId;
 	protected $table = 'reservation';
 
+    #criando nova reserva
 	public function insert()
 	{
 		$sql = "INSERT INTO $this->table (day, hour, roomNumber, userId) VALUES (:day, :hour, :roomNumber, :userId)";
@@ -24,6 +25,19 @@ class ClassReservation extends ClassCRUD
 		return $stmt->execute();
 	}
 
+    #Método para verificar se a sala já está reservada
+    public function isReserved($day, $hour, $roomNumber)
+    {
+        $sql = "SELECT * FROM $this->table WHERE day = :day AND hour = :hour AND roomNumber = :roomNumber";
+        $stmt = Conecta::prepare($sql);
+        $stmt->bindParam(":day", $day, PARAM_STR);
+        $stmt->bindParam(":hour", $hour, PARAM_STR);
+        $stmt->bindParam(":roomNumber", $roomNumber, PARAM_INT);
+        $stmt->execute();
+        $stmt->fetch();
+    }
+
+    #getters and setters
     public function getId()
     {
         return $this->id;
