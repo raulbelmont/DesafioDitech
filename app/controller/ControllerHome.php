@@ -49,15 +49,14 @@ class ControllerHome extends ClassRender implements InterfaceView
 			$user->setPassword($this->password);
 			#fazendo login
 			if ($user->login()) {
-				header(DIRPAGE."dashboard");
+				$url = "Location:".DIRPAGE."dashboard";
+				header("Location:".DIRPAGE."dashboard");
 			}else{
-				echo "<script type='text/javascript'>alert('Erro ao logar!')</script>";
+				echo "<script type='text/javascript'>alert('Erro ao logar! Informe nome e senha válidos.')</script>";
 			}
 		}else{
 			echo "<script type='text/javascript'>alert('Informe nome e senha!')</script>";
 		}
-	}
-
 	}
 
 	#getters and setters

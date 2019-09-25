@@ -5,11 +5,11 @@ class ControllerLogout
 {
 	public function __construct()
 	{
-		if (!session_id()){
-		session_start();
-	    session_unset();
-	    session_destroy();
-	    header(DIRPAGE."home");
+		if(!session_id()){
+			session_start();
+	    	session_unset();
+	    	session_destroy();
+	    	header("Location:".DIRPAGE."");
 		}
 	}
 }
