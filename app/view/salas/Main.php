@@ -9,7 +9,7 @@
       <div class="form-group col-12 bg-dark text-white p-3">
       	<p class="text-center font-weight-bold text-uppercase">Nova sala</p>
         <label for="roomNumber" class="">Número da sala:</label>
-        <input class="input-group" type="text" name="roomNumber" required>
+        <input class="input-group" type="number" name="roomNumber" required>
 	  </div>
 
 	  <button type="submit" class="btn btn-primary">Salvar</button>
