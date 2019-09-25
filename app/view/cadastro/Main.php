@@ -7,14 +7,14 @@
     <div class="form-row">
       <!-- Nome -->
       <div class="form-group col-12">
-        <label for="nome">Nome</label>
-        <input id="nome" class="input-group" type="text" name="nome" placeholder="Informe seu nome" required/>
+        <label for="name">Nome</label>
+        <input id="name" class="input-group" type="text" name="name" placeholder="Informe seu nome" required/>
       </div>
 
       <!-- Senha -->
       <div class="form-group col-12">
-        <label for="senha">Senha</label>
-        <input id="senha" class="input-group" type="password" name="senha" placeholder="Digite uma senha" required/>
+        <label for="password">Senha</label>
+        <input id="password" class="input-group" type="password" name="password" placeholder="Digite uma senha" required/>
       </div>
 
        <button type="submit" class="btn btn-primary">Cadastrar</button>
