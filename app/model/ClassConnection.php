@@ -25,4 +25,5 @@ class ClassConnection
     public static function prepare($sql){
         return self::getInstance()->prepare($sql);
     }
+
 }
