@@ -27,10 +27,10 @@ class ClassUser extends ClassCRUD
 	}
 
     #criando login de usuário
-    public function login($name, $password)
+    public function login()
     {
-        if ($this->userExists($name, $password)) {
-            $user->userExists($name, $password);
+        if ($this->userExists()) {
+            $user = $this->userExists();
             session_start();
             $_SESSION['isLogged'] = true;
             $_SESSION['user_id'] = $user->id;
