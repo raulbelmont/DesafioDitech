@@ -20,6 +20,13 @@
   </header>
 
   <main class="row">
+    <div class="col-12 breadcrumb py-3">
+      <?php
+        use Src\classes\ClassBreadcrumb;
+        $Breadcrumbs = new ClassBreadcrumb();
+        $Breadcrumbs->addBreadcrumb();
+      ?>
+    </div>
     <?php $this->addMain(); ?>
   </main>
 
