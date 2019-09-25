@@ -1,9 +1,9 @@
 <?php
 namespace App\model;
 
-use App\model\CRUD;
+use App\model\ClassCRUD;
 
-class User extends CRUD
+class ClassUser extends ClassCRUD
 {
 
 	private $id;
