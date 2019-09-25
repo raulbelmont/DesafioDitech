@@ -21,7 +21,8 @@ class ClassRoutes
 			"home"=>"ControllerHome",
 			"cadastro"=>"ControllerRegister",
 			"logout"=>"ControllerLogout",
-			"dashboard"=>"ControllerDashboard"
+			"dashboard"=>"ControllerDashboard",
+			"salas"=>"ControllerRoom"
 		);
 
 		if (array_key_exists($I,$this->Rota)) {
