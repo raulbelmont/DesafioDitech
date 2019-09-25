@@ -10,7 +10,6 @@
   <title><?php echo $this->getTitle(); ?></title>
   <link rel="stylesheet" href="<?php echo DIRCSS.'Style.css'; ?>">
   <link rel="stylesheet" href="<?php echo DIRCSS.'bootstrap/bootstrap.css'; ?>">
-  <link rel="stylesheet" href="<?php echo DIRCSS.'Style.css'; ?>">
   <?php $this->addHead(); ?>
 </head>
 <body class="container-fluid">
