@@ -6,6 +6,7 @@ class ClassConnection
 
     private static $instance;
 
+    #Instanciando conexao com o BD
     public static function getInstance()
     {
         if(!isset( self::$instance)){
@@ -22,6 +23,7 @@ class ClassConnection
         return self::$instance;
     }
 
+    #preparando a query a ser executada
     public static function prepare($sql){
         return self::getInstance()->prepare($sql);
     }
