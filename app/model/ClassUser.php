@@ -5,7 +5,6 @@ use App\model\ClassCRUD;
 
 class ClassUser extends ClassCRUD
 {
-
     #atributos da classe
 	private $id;
 	private $name;
