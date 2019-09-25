@@ -34,7 +34,19 @@ class ClassReservation extends ClassCRUD
         $stmt->bindParam(":hour", $hour, PARAM_STR);
         $stmt->bindParam(":roomNumber", $roomNumber, PARAM_INT);
         $stmt->execute();
-        $stmt->fetch();
+        $stmt->fetchAll();
+    }
+
+    #Método que verifica se o usuário já possui reserva no horário desejado
+    public function haveReservation($userId, $day, $hour)
+    {
+        $sql = "SELECT * FROM $this->table WHERE userId = :userId AND day = :day AND hour = :hour"
+        $stmt = Conecta::prepare($sql);
+        $stmt->bindParam(':userId', $userId, PARAM_INT);
+        $stmt->bindParam(':day', $day, PARAM_STR);
+        $stmt->bindParam(':hour', $hour, PARAM_STR);
+        $stmt->execute();
+        $stmt->fetchAll();
     }
 
     #getters and setters
