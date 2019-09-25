@@ -3,7 +3,7 @@ namespace App\model;
 
 use App\model\ClassCRUD;
 
-class User extends ClassCRUD
+class ClassRoom extends ClassCRUD
 {
     #atributos da classe
 	private $id;
@@ -14,8 +14,8 @@ class User extends ClassCRUD
 	public function insert()
 	{
 		$sql = "INSERT INTO $this->table (roomNumber) VALUES (:roomNumber)";
-		$stmt = Conecta::prepare($sql);
-		$stmt->bindParam(':roomNumber', $this->roomNumber, PDO::PARAM_INT);
+		$stmt = ClassConnection::prepare($sql);
+		$stmt->bindParam(':roomNumber', $this->roomNumber, \PDO::PARAM_INT);
 		return $stmt->execute();
 	}
 
@@ -25,11 +25,11 @@ class User extends ClassCRUD
 	}
 
     #verifica se a sala que irá ser cadastrada já existe
-    public function roomExists($roomNumber);
+    public function roomExists()
     {
         $sql = "SELECT * FROM $this->table WHERE roomNumber = :roomNumber";
-        $stmt = Conecta::prepare($sql);
-        $stmt->bindParam(":roomNumber", $roomNumber, PDO::PARAM_INT);
+        $stmt = ClassConnection::prepare($sql);
+        $stmt->bindParam(":roomNumber", $roomNumber, \PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
     }
