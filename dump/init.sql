@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 26/09/2019 às 02:44
+-- Tempo de geração: 26/09/2019 às 07:12
 -- Versão do servidor: 10.3.16-MariaDB
 -- Versão do PHP: 7.3.7
 
@@ -56,9 +56,9 @@ CREATE TABLE `room` (
 INSERT INTO `room` (`id`, `roomNumber`) VALUES
 (8, 1),
 (9, 2),
-(10, 3),
 (11, 4),
-(12, 5);
+(12, 5),
+(15, 7);
 
 -- --------------------------------------------------------
 
@@ -73,13 +73,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `user`
---
-
-INSERT INTO `user` (`id`, `name`, `password`) VALUES
-(2, 'Raul', '81dc9bdb52d04dc20036dbd8313ed055');
-
---
 -- Índices de tabelas apagadas
 --
 
@@ -87,9 +80,7 @@ INSERT INTO `user` (`id`, `name`, `password`) VALUES
 -- Índices de tabela `reservation`
 --
 ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `roomNumber` (`roomId`),
-  ADD UNIQUE KEY `userId` (`userId`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `room`
@@ -111,19 +102,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de tabela `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para dumps de tabelas
@@ -133,8 +124,8 @@ ALTER TABLE `user`
 -- Restrições para tabelas `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`roomId`) REFERENCES `room` (`id`);
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`roomId`) REFERENCES `room` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
