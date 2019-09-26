@@ -49,3 +49,48 @@
   </tbody>
 </table>
 </div>
+
+<!-- Exibindo reservas do usuário -->
+<div class="row justify-content-center">
+
+  <h4 class="col-12 text-center">Confira suas reservas</h4>
+
+  <?php foreach ($this->getUserReservation() as $key => $value):?>
+  <table class="table table-bordered col-3 mx-2">
+    <thead class="thead-dark text-center">
+      <tr>
+        <th>Sala Nº <?php echo $this->getRoomNumber($value->roomId);?></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dia da reunião -->
+      <tr class="text-center">
+        <td>
+           <?php
+              $data = new DateTime($value->day);
+              $day = $data->format('d/m/Y');
+              echo "Reservado para o dia: ".$day;
+            ?>
+        </td>
+      </tr>
+      <!-- horário da reunião -->
+      <tr class="text-center">
+        <td>
+           <?php
+              $data = new DateTime($value->hour);
+              $hour = $data->format('H');
+              $endHour = $hour + 1;
+              echo "Horário reservado: ".$hour.":00h as ".$endHour.":00h";
+            ?>
+        </td>
+      </tr>
+      <!-- Opção de cancelar reserva -->
+      <tr class="text-center">
+        <td>
+          <a class="text-danger" href="<?php echo DIRPAGE."dashboard/cancelReservation/".$value->id ?>">Cancelar reserva</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<?php endforeach; ?>
+</div>
