@@ -11,7 +11,14 @@
 	  </div>
 	</form>
 
-  <table class="table col-11">
+  <?php
+  		$data = new DateTime($this->getParameterDay());
+  		$dataAtual = $data->format('d/m/Y');
+  ?>
+
+  <h4 class="col-12 text-center">Mostrando horários para o dia: <?=$dataAtual?></h4>
+
+  <table class="table col-11 mb-5">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Nº da Sala</th>

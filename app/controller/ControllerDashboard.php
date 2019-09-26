@@ -24,15 +24,9 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 			$this->setDir("dashboard");
 			$this->renderLayout();
 		}else{
-			$this->goTo('');
+			header("Location:".DIRPAGE."");
 		}
 
-	}
-
-	#metodo para redirecionamento
-	public function goTo($url)
-	{
-		header("Refresh: 0; url=".DIRPAGE."".$url);
 	}
 	#busca as salas
 	public function getRooms()
