@@ -56,13 +56,36 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 		#checa se existe reserva
 		if ($reservation->isReserved($day, $hour, $roomId)) {
 			#checa se a reserva é do usuário que está logado
-			if($reservation->getUserId() == $_SESSION['user_id']){
-				echo "<p class='text-danger'>Você reservou</p><br/>";
-				echo "<a></a>"
+			$reserve = $reservation->isReserved($day, $hour, $roomId);
+			if(($reserve[0]->userId) == ($_SESSION['user_id'])){
+				echo "<p class='text-danger m-0 p-0'>Você reservou</p><br/>";
+				echo "<a class='p-0 m-0' href='".DIRPAGE."dashboard/cancelReservation/".$reserve[0]->id."'>Cancelar</a>";
+			}else{
+				echo "<p class='text-danger'>Reservado</p><br/>";
 			}
 		}else{
 			echo "<a class='text-success' href='".DIRPAGE."dashboard/reserve/".$day."/".$hour."/".$roomId."'>Reservar</a>";
 		}
+	}
+
+	#metodo para fazer reserva de horário
+	public function reserve($day, $hour, $roomId)
+	{
+		$reservation = new ClassReservation();
+		$reservation->setDay($day);
+		$reservation->setHour($hour);
+		$reservation->setRoomId($roomId);
+		$reservation->setUserId($_SESSION['user_id']);
+		if ($reservation->isReserved($day, $hour, $roomId)) {
+			echo "<script type='text/javascript'>alert('Ops! Alguém reservou esse horário')</script>";
+			header("Refresh: 0; url=".DIRPAGE."dashboard");
+		}elseif ($reservation->insert()) {
+			echo "<script type='text/javascript'>alert('Horário reservado com sucesso!')</script>";
+			header("Refresh: 0; url=".DIRPAGE."dashboard");
+		}else{
+			echo "<script type='text/javascript'>alert('Erro ao reservar sala!')</script>";
+		}
+
 	}
 
     public function getDay()

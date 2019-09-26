@@ -17,14 +17,14 @@
   	<?php foreach ($this->getRooms() as $key => $value): ?>
     <tr>
       <td><?=$value->roomNumber?></td>
-      <td><?php $hour = '08:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
-      <td><?php $hour = '09:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
-      <td><?php $hour = '10:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
-      <td><?php $hour = '11:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
-      <td><?php $hour = '13:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
-      <td><?php $hour = '14:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
-      <td><?php $hour = '16:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
-      <td><?php $hour = '17:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
+      <td><?php $hour = '08:00:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
+      <td><?php $hour = '09:00:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
+      <td><?php $hour = '10:00:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
+      <td><?php $hour = '11:00:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
+      <td><?php $hour = '13:00:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
+      <td><?php $hour = '14:00:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
+      <td><?php $hour = '16:00:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
+      <td><?php $hour = '17:00:00'; $this->checkReserve($this->getParameterDay(), $hour, $value->id); ?></td>
     </tr>
 	<?php endforeach; ?>
   </tbody>

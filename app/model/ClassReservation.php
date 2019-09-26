@@ -18,10 +18,10 @@ class ClassReservation extends ClassCRUD
 	{
 		$sql = "INSERT INTO $this->table (day, hour, roomId, userId) VALUES (:day, :hour, :roomId, :userId)";
 		$stmt = ClassConnection::prepare($sql);
-		$stmt->bindParam(':day', $this->day, PDO::PARAM_STR);
-		$stmt->bindParam(':hour', $this->hour, PDO::PARAM_STR);
-        $stmt->bindParam(':roomId', $this->roomNumber, PDO::PARAM_INT);
-        $stmt->bindParam(':userId', $this->userId, PDO::PARAM_INT);
+		$stmt->bindParam(':day', $this->day, \PDO::PARAM_STR);
+		$stmt->bindParam(':hour', $this->hour, \PDO::PARAM_STR);
+        $stmt->bindParam(':roomId', $this->roomId, \PDO::PARAM_INT);
+        $stmt->bindParam(':userId', $this->userId, \PDO::PARAM_INT);
 		return $stmt->execute();
 	}
 
@@ -35,11 +35,11 @@ class ClassReservation extends ClassCRUD
     {
         $sql = "SELECT * FROM $this->table WHERE day = :day AND hour = :hour AND roomId = :roomId";
         $stmt = ClassConnection::prepare($sql);
-        $stmt->bindParam(":day", $day, \PDO::PARAM_STR);
-        $stmt->bindParam(":hour", $hour, \PDO::PARAM_STR);
+        $stmt->bindParam(":day", $day);
+        $stmt->bindParam(":hour", $hour);
         $stmt->bindParam(":roomId", $roomId, \PDO::PARAM_INT);
         $stmt->execute();
-        $stmt->fetchAll();
+        return $stmt->fetchAll();
     }
 
     #Método que verifica se o usuário já possui reserva no horário desejado
