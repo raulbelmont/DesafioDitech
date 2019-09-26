@@ -21,6 +21,6 @@ define("DIRVIDEO", DIRPAGE."public/video/");
 
 #Acesso ao bando de dados
 define("DBHOST","localhost");
-define("DBNAME","DesafioDitech");
+define("DBNAME","DesafioDitechFinal");
 define("DBUSER","root");
 define("DBPASS","");
