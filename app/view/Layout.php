@@ -30,11 +30,10 @@
   </main>
 
   <footer class="Footer">
+    <script src="<?php echo DIRJS.'jquery/jquery.js'; ?>"></script>
+    <script src="<?php echo DIRJS.'popper/popper.js'; ?>"></script>
+    <script src="<?php echo DIRJS.'bootstrap/bootstrap.js'; ?>"></script>
     <?php $this->addFooter(); ?>
   </footer>
-
-<script src="<?php echo DIRJS.'jquery/jquery.js'; ?>"></script>
-<script src="<?php echo DIRJS.'popper/popper.js'; ?>"></script>
-<script src="<?php echo DIRJS.'bootstrap/bootstrap.js'; ?>"></script>
 </body>
 </html>
