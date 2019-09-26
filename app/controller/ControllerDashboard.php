@@ -53,8 +53,16 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 	public function checkReserve($day, $hour, $roomId)
 	{
 		$reservation = new ClassReservation();
-		$result = $reservation->isReserved($day, $hour, $roomId);
-		var_dump($result);
+		#checa se existe reserva
+		if ($reservation->isReserved($day, $hour, $roomId)) {
+			#checa se a reserva é do usuário que está logado
+			if($reservation->getUserId() == $_SESSION['user_id']){
+				echo "<p class='text-danger'>Você reservou</p><br/>";
+				echo "<a></a>"
+			}
+		}else{
+			echo "<a class='text-success' href='".DIRPAGE."dashboard/reserve/".$day."/".$hour."/".$roomId."'>Reservar</a>";
+		}
 	}
 
     public function getDay()
