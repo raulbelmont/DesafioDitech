@@ -4,7 +4,7 @@
       <a class="nav-link" href="<?php echo DIRPAGE."dashboard"; ?>">Dashboard</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?php echo DIRPAGE."salas"; ?>">Nova sala</a>
+      <a class="nav-link" href="<?php echo DIRPAGE."salas"; ?>">Salas</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="<?php echo DIRPAGE.'logout'; ?>">Logout</a>
