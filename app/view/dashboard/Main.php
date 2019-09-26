@@ -1,4 +1,16 @@
 <div class="row justify-content-center">
+  <h2 class="col-12 text-center">Olá <?=$_SESSION['user_name']?></h2>
+
+	<form id="formDay" name="formDay" class="col-10 text-center py-4" action="<?php echo DIRPAGE."dashboard"?>" method="post">
+	  <div class="form-row">
+	  	<div class="form-group col-12">
+		  <label for="selectDay">Selecione o dia:</label>
+		  <input id="selectDay" type="text" name="selectDay" placeholder="__/__/____">
+		  <input id="day" type="hidden" name="day" value="">
+	    </div>
+	  </div>
+	</form>
+
   <table class="table col-11">
   <thead class="thead-dark">
     <tr>

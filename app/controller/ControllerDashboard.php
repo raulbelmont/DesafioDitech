@@ -24,11 +24,16 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 			$this->setDir("dashboard");
 			$this->renderLayout();
 		}else{
-			header("Location:".DIRPAGE."");
+			$this->goTo('');
 		}
 
 	}
 
+	#metodo para redirecionamento
+	public function goTo($url)
+	{
+		header("Refresh: 0; url=".DIRPAGE."".$url);
+	}
 	#busca as salas
 	public function getRooms()
 	{
@@ -58,13 +63,13 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 			#checa se a reserva é do usuário que está logado
 			$reserve = $reservation->isReserved($day, $hour, $roomId);
 			if(($reserve[0]->userId) == ($_SESSION['user_id'])){
-				echo "<p class='text-danger m-0 p-0'>Você reservou</p><br/>";
-				echo "<a class='p-0 m-0' href='".DIRPAGE."dashboard/cancelReservation/".$reserve[0]->id."'>Cancelar</a>";
+				echo"<p class='text-danger m-0 p-0'>Você reservou</p><br/>";
+				echo"<a class='p-0 m-0' href='".DIRPAGE."dashboard/cancelReservation/".$reserve[0]->id."'>Cancelar</a>";
 			}else{
-				echo "<p class='text-danger'>Reservado</p><br/>";
+				echo"<p class='text-danger'>Reservado</p><br/>";
 			}
 		}else{
-			echo "<a class='text-success' href='".DIRPAGE."dashboard/reserve/".$day."/".$hour."/".$roomId."'>Reservar</a>";
+			echo"<a class='text-success' href='".DIRPAGE."dashboard/reserve/".$day."/".$hour."/".$roomId."'>Reservar</a>";
 		}
 	}
 
@@ -77,17 +82,40 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 		$reservation->setRoomId($roomId);
 		$reservation->setUserId($_SESSION['user_id']);
 		if ($reservation->isReserved($day, $hour, $roomId)) {
-			echo "<script type='text/javascript'>alert('Ops! Alguém reservou esse horário')</script>";
-			header("Refresh: 0; url=".DIRPAGE."dashboard");
+			echo"<script type='text/javascript'>alert('Ops! Alguém reservou esse horário');
+			window.location = '".DIRPAGE."dashboard'; </script>";
+			// $this->goTo('dashboard');
 		}elseif ($reservation->insert()) {
-			echo "<script type='text/javascript'>alert('Horário reservado com sucesso!')</script>";
-			header("Refresh: 0; url=".DIRPAGE."dashboard");
+			echo"<script type='text/javascript'>alert('Horário reservado com sucesso!');
+			window.location = '".DIRPAGE."dashboard'</script>";
+
+			// $this->goTo('dashboard');
 		}else{
-			echo "<script type='text/javascript'>alert('Erro ao reservar sala!')</script>";
+			echo"<script type='text/javascript'>alert('Erro ao reservar sala!')</script>";
 		}
 
 	}
 
+	#cancelar reserva
+	public function cancelReservation($id)
+	{
+		$reservation = new ClassReservation();
+		#verificando existência da reserva
+		if ($reservation->select($id)) {
+			#excluindo a reserva
+			if ($reservation->delete($id)) {
+				echo"<script type='text/javascript'>alert('Reserva cancelada!');
+			window.location = '".DIRPAGE."dashboard'</script>";
+				// $this->goTo('dashboard');
+			}else{
+				echo"<script type='text/javascript'>alert('Erro ao cancelar reserva!')</script>";
+			}
+		}else{
+			echo"<script type='text/javascript'>alert('Essa reserva já foi cancelada!')</script>";
+		}
+	}
+
+	#getters and setters
     public function getDay()
     {
         return $this->day;
