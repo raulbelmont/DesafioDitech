@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 26/09/2019 às 07:12
--- Versão do servidor: 10.3.16-MariaDB
--- Versão do PHP: 7.3.7
+-- Tempo de geração: 26/09/2019 às 19:32
+-- Versão do servidor: 10.4.6-MariaDB
+-- Versão do PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `DesafioDitech`
+-- Banco de dados: `DesafioDitechFinal`
 --
-CREATE DATABASE IF NOT EXISTS `DesafioDitech` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `DesafioDitech`;
+CREATE DATABASE IF NOT EXISTS `DesafioDitechFinal` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `DesafioDitechFinal`;
 
 -- --------------------------------------------------------
 
@@ -57,8 +57,7 @@ INSERT INTO `room` (`id`, `roomNumber`) VALUES
 (8, 1),
 (9, 2),
 (11, 4),
-(12, 5),
-(15, 7);
+(12, 5);
 
 -- --------------------------------------------------------
 
@@ -73,6 +72,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Despejando dados para a tabela `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `password`) VALUES
+(5, 'Raul', '81dc9bdb52d04dc20036dbd8313ed055');
+
+--
 -- Índices de tabelas apagadas
 --
 
@@ -80,7 +86,9 @@ CREATE TABLE `user` (
 -- Índices de tabela `reservation`
 --
 ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reservation_ibfk_1` (`userId`),
+  ADD KEY `reservation_ibfk_2` (`roomId`);
 
 --
 -- Índices de tabela `room`
@@ -102,7 +110,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de tabela `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `room`
@@ -114,7 +122,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para dumps de tabelas
