@@ -72,13 +72,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `user`
---
-
-INSERT INTO `user` (`id`, `name`, `password`) VALUES
-(5, 'Raul', '81dc9bdb52d04dc20036dbd8313ed055');
-
---
 -- Índices de tabelas apagadas
 --
 
