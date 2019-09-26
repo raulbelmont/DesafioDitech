@@ -54,6 +54,16 @@ class ClassReservation extends ClassCRUD
         return $stmt->fetchAll();
     }
 
+    #busca as reservas de um usuário
+    public function selectAllUserReservation($userId)
+    {
+        $sql = "SELECT * FROM $this->table WHERE userId = :userId ORDER BY day ASC";
+        $stmt = ClassConnection::prepare($sql);
+        $stmt->bindParam(':userId', $userId, \PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     #getters and setters
     public function getId()
     {
