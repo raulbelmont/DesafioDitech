@@ -75,15 +75,18 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 		$reservation->setHour($hour);
 		$reservation->setRoomId($roomId);
 		$reservation->setUserId($_SESSION['user_id']);
+		#verificando se o horário está vago
 		if ($reservation->isReserved($day, $hour, $roomId)) {
 			echo"<script type='text/javascript'>alert('Ops! Alguém reservou esse horário');
 			window.location = '".DIRPAGE."dashboard'; </script>";
-			// $this->goTo('dashboard');
+		#verificando se o usuário já possui uma reserva nesse horário
+		}elseif ($reservation->haveReservation($_SESSION['user_id'], $day, $hour)) {
+			echo"<script type='text/javascript'>alert('Você já reservou outra sala nesse horário!');
+			window.location = '".DIRPAGE."dashboard'; </script>";
+		#criando reserva
 		}elseif ($reservation->insert()) {
 			echo"<script type='text/javascript'>alert('Horário reservado com sucesso!');
 			window.location = '".DIRPAGE."dashboard'</script>";
-
-			// $this->goTo('dashboard');
 		}else{
 			echo"<script type='text/javascript'>alert('Erro ao reservar sala!')</script>";
 		}

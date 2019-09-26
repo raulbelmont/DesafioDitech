@@ -51,7 +51,7 @@ class ClassReservation extends ClassCRUD
         $stmt->bindParam(':day', $day, \PDO::PARAM_STR);
         $stmt->bindParam(':hour', $hour, \PDO::PARAM_STR);
         $stmt->execute();
-        $stmt->fetchAll();
+        return $stmt->fetchAll();
     }
 
     #getters and setters
