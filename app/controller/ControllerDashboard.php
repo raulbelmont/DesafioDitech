@@ -36,6 +36,13 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 		return $rooms;
 	}
 
+	#busca o número de uma sala específica
+	public function getRoomNumber($roomId){
+		$room = new ClassRoom();
+		$room = $room->select($roomId);
+		return $room->roomNumber;
+	}
+
 	#pega parametro dia para buscar reservas
 	public function getParameterDay()
 	{
@@ -46,6 +53,14 @@ class ControllerDashboard extends ClassRender implements InterfaceView
 			$this->setDay(date('Y-m-d'));
 			return $this->getDay();
 		}
+	}
+
+	#busca as reservas de um usuário
+	public function getUserReservation()
+	{
+		$userId = $_SESSION['user_id'];
+		$reservation = new ClassReservation();
+		return $reservation->selectAllUserReservation($userId);
 	}
 
 	#checa se existe reserva para o dia e horário em uma sala de reunião
