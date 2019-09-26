@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 25/09/2019 às 04:35
+-- Tempo de geração: 26/09/2019 às 02:44
 -- Versão do servidor: 10.3.16-MariaDB
 -- Versão do PHP: 7.3.7
 
@@ -27,14 +27,14 @@ USE `DesafioDitech`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `reservas`
+-- Estrutura para tabela `reservation`
 --
 
-CREATE TABLE `reservas` (
+CREATE TABLE `reservation` (
   `id` bigint(20) NOT NULL,
   `day` date NOT NULL,
   `hour` time NOT NULL,
-  `roomNumber` bigint(20) NOT NULL,
+  `roomId` bigint(20) NOT NULL,
   `userId` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -45,8 +45,20 @@ CREATE TABLE `reservas` (
 --
 
 CREATE TABLE `room` (
-  `roomNumber` bigint(20) NOT NULL
+  `id` bigint(20) NOT NULL,
+  `roomNumber` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Despejando dados para a tabela `room`
+--
+
+INSERT INTO `room` (`id`, `roomNumber`) VALUES
+(8, 1),
+(9, 2),
+(10, 3),
+(11, 4),
+(12, 5);
 
 -- --------------------------------------------------------
 
@@ -61,22 +73,29 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Despejando dados para a tabela `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `password`) VALUES
+(2, 'Raul', '81dc9bdb52d04dc20036dbd8313ed055');
+
+--
 -- Índices de tabelas apagadas
 --
 
 --
--- Índices de tabela `reservas`
+-- Índices de tabela `reservation`
 --
-ALTER TABLE `reservas`
+ALTER TABLE `reservation`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_room_number` (`roomNumber`),
-  ADD KEY `userId` (`userId`);
+  ADD UNIQUE KEY `roomNumber` (`roomId`),
+  ADD UNIQUE KEY `userId` (`userId`);
 
 --
 -- Índices de tabela `room`
 --
 ALTER TABLE `room`
-  ADD PRIMARY KEY (`roomNumber`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `user`
@@ -89,21 +108,33 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT de tabela `reservas`
+-- AUTO_INCREMENT de tabela `reservation`
 --
-ALTER TABLE `reservas`
+ALTER TABLE `reservation`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de tabela `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para dumps de tabelas
 --
 
 --
--- Restrições para tabelas `reservas`
+-- Restrições para tabelas `reservation`
 --
-ALTER TABLE `reservas`
-  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`roomNumber`) REFERENCES `room` (`roomNumber`),
-  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`roomId`) REFERENCES `room` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
