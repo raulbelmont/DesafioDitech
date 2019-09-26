@@ -9,30 +9,35 @@ class ClassReservation extends ClassCRUD
 	private $id;
 	private $day;
 	private $hour;
-    private $roomNumber;
+    private $roomId;
     private $userId;
 	protected $table = 'reservation';
 
     #criando nova reserva
 	public function insert()
 	{
-		$sql = "INSERT INTO $this->table (day, hour, roomNumber, userId) VALUES (:day, :hour, :roomNumber, :userId)";
-		$stmt = Conecta::prepare($sql);
+		$sql = "INSERT INTO $this->table (day, hour, roomId, userId) VALUES (:day, :hour, :roomId, :userId)";
+		$stmt = ClassConnection::prepare($sql);
 		$stmt->bindParam(':day', $this->day, PDO::PARAM_STR);
 		$stmt->bindParam(':hour', $this->hour, PDO::PARAM_STR);
-        $stmt->bindParam(':roomNumber', $this->roomNumber, PDO::PARAM_INT);
+        $stmt->bindParam(':roomId', $this->roomNumber, PDO::PARAM_INT);
         $stmt->bindParam(':userId', $this->userId, PDO::PARAM_INT);
 		return $stmt->execute();
 	}
 
-    #Método para verificar se a sala já está reservada
-    public function isReserved($day, $hour, $roomNumber)
+    public function update()
     {
-        $sql = "SELECT * FROM $this->table WHERE day = :day AND hour = :hour AND roomNumber = :roomNumber";
-        $stmt = Conecta::prepare($sql);
-        $stmt->bindParam(":day", $day, PARAM_STR);
-        $stmt->bindParam(":hour", $hour, PARAM_STR);
-        $stmt->bindParam(":roomNumber", $roomNumber, PARAM_INT);
+
+    }
+
+    #Método para verificar se a sala já está reservada
+    public function isReserved($day, $hour, $roomId)
+    {
+        $sql = "SELECT * FROM $this->table WHERE day = :day AND hour = :hour AND roomId = :roomId";
+        $stmt = ClassConnection::prepare($sql);
+        $stmt->bindParam(":day", $day, \PDO::PARAM_STR);
+        $stmt->bindParam(":hour", $hour, \PDO::PARAM_STR);
+        $stmt->bindParam(":roomId", $roomId, \PDO::PARAM_INT);
         $stmt->execute();
         $stmt->fetchAll();
     }
@@ -40,11 +45,11 @@ class ClassReservation extends ClassCRUD
     #Método que verifica se o usuário já possui reserva no horário desejado
     public function haveReservation($userId, $day, $hour)
     {
-        $sql = "SELECT * FROM $this->table WHERE userId = :userId AND day = :day AND hour = :hour"
-        $stmt = Conecta::prepare($sql);
-        $stmt->bindParam(':userId', $userId, PARAM_INT);
-        $stmt->bindParam(':day', $day, PARAM_STR);
-        $stmt->bindParam(':hour', $hour, PARAM_STR);
+        $sql = "SELECT * FROM $this->table WHERE userId = :userId AND day = :day AND hour = :hour";
+        $stmt = ClassConnection::prepare($sql);
+        $stmt->bindParam(':userId', $userId, \PDO::PARAM_INT);
+        $stmt->bindParam(':day', $day, \PDO::PARAM_STR);
+        $stmt->bindParam(':hour', $hour, \PDO::PARAM_STR);
         $stmt->execute();
         $stmt->fetchAll();
     }
@@ -86,14 +91,14 @@ class ClassReservation extends ClassCRUD
         return $this;
     }
 
-    public function getRoomNumber()
+    public function getRoomId()
     {
-        return $this->roomNumber;
+        return $this->roomId;
     }
 
-    public function setRoomNumber($roomNumber)
+    public function setRoomId($roomId)
     {
-        $this->roomNumber = $roomNumber;
+        $this->roomId = $roomId;
 
         return $this;
     }
